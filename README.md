@@ -28,4 +28,3 @@ gcc -std=c11 -O2 -Wall -Wextra -Wpedantic llbc128.c -o llbc128
 
 - The C and Python programs produce identical ciphertexts for all five included plaintext/key pairs.
 - The 64-vector RTL testbench was run by the project author in ISE 14.6 / ISim and reported: `PASS: all 64 LLBC-128-128 encryption/decryption vectors`.
-```
