@@ -1,13 +1,31 @@
-# LLBC Cipher
+# LLBC-128-128
 
-## Important Notice
+The previously released reference implementation used rotation amounts `(32, 16)`, which were inconsistent with the encryption/decryption procedure specified in Section II of the paper. This release follows Section II and uses `(3, 19)`. The five plaintext/key pairs from Appendix Table XVI are retained; their published ciphertexts are not used as expected outputs for this specification-aligned implementation.
 
-We have identified inconsistencies in the previously released reference implementation of LLBC.
+## Files
 
-Specifically, the previous implementation used rotation amounts (32, 16), which do not conform to the algorithm specification described in the published IEEE paper. The rotation amounts specified in the paper are (3, 19).
+- `llbc128.c` — C encryption test program (five plaintext/key pairs).
+- `llbc128.py` — Python encryption test program (the same five pairs).
+- `rtl/llbc128.v` — Verilog-2001 encryption/decryption implementation.
+- `tests/tb_llbc128.v` — Verilog testbench with 64 embedded encryption/decryption vectors.
 
-We are currently updating the reference implementation to ensure consistency with the published algorithm specification, using (3, 19) as the correct rotation parameters.
+## Run
 
-The revised source code, algorithm description, and test vectors will be released after verification.
+Python:
 
-The previous implementation is retained for research reproducibility. Please refer to the forthcoming updated release for the corrected implementation.
+```bash
+python3 llbc128.py
+```
+
+C:
+
+```bash
+gcc -std=c11 -O2 -Wall -Wextra -Wpedantic llbc128.c -o llbc128
+./llbc128
+```
+
+## Validation
+
+- The C and Python programs produce identical ciphertexts for all five included plaintext/key pairs.
+- The 64-vector RTL testbench was run by the project author in ISE 14.6 / ISim and reported: `PASS: all 64 LLBC-128-128 encryption/decryption vectors`.
+```
