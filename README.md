@@ -1,6 +1,10 @@
 # LLBC-128-128
 
-The previously released reference implementation used rotation amounts `(32, 16)`, which were inconsistent with the encryption/decryption procedure specified in Section II of the paper. This release follows Section II and uses `(3, 19)`. The five plaintext/key pairs from Appendix Table XVI are retained; their published ciphertexts are not used as expected outputs for this specification-aligned implementation.
+The LLBC-128-128 encryption/decryption algorithm is specified in Section II of the paper, using rotation parameters `(3, 19)`.
+
+The rotation parameters `(32, 16)` were used only to generate the ciphertext values in Appendix Table XVI; the algorithm specification in Section II remains unchanged.
+
+The five plaintext/key pairs from Table XVI are retained in this repository. The provided implementations follow Section II using `(3, 19)`, and therefore their ciphertext outputs differ from those originally reported in Table XVI.
 
 ## Files
 
